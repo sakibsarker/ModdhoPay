@@ -1,0 +1,30 @@
+{
+  "expo": {
+    "scheme": "acme",
+    "web": {
+      "bundler": "metro"
+    },
+    "name": "ModdhoPay",
+    "slug": "moddhogateway",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "orientation": "portrait",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "android": {
+      "package": "com.sakibsarker.moddhopay",
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "364a0cf5-d0fa-4153-b5e3-8c139ca85668"
+      }
+    }
+  }
+}
