@@ -71,7 +71,7 @@ export default function CreateAccount() {
           if (resp?.user) {
             router.replace("/(tabs)/home");
           } else {
-            console.log(resp.error);
+            Alert.alert(resp.error);
             Alert.alert("Sign Up Error", resp.error?.message);
           }
         }}>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TextInput, StyleSheet, TouchableOpacity,Image } from 'react-native';
+import { View, Text, TextInput, StyleSheet, TouchableOpacity,Image,Alert } from 'react-native';
 import { primaryColor, secondaryColor, textColor, bgColor } from './../color';
 import { get, ref, set } from 'firebase/database';
 import { db } from './../firebase-config';
@@ -22,7 +22,7 @@ const CashOutMoney = () => {
         setCurrentAmount(snapshot.val());
       }
     } catch (error) {
-      console.error('Error fetching current amount:', error);
+      Alert.alert('Error fetching current amount:', error);
     }
   };
 

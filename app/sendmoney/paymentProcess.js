@@ -31,7 +31,7 @@ const PaymentProcess = () => {
         setCurrentAmount(snapshot.val());
       }
     } catch (error) {
-      console.error('Error fetching current amount:', error);
+      Alert.alert('Error fetching current amount:', error);
     }
   };
 

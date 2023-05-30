@@ -43,7 +43,7 @@ const Profile = () => {
           if (!resp?.error) {
             router.replace("/(auth)/login");
           } else {
-            console.log(resp.error);
+            Alert.alert(resp.error);
             Alert.alert("Logout Error", resp.error?.message);
           }
         }}>

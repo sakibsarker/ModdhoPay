@@ -42,7 +42,7 @@ export default function LogIn() {
           if (resp?.user) {
             router.replace("/(tabs)/home");
           } else {
-            console.log(resp.error)
+            Alert.alert(resp.error)
             Alert.alert("Login Error", resp.error?.message)
           }
         }}>

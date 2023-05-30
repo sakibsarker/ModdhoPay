@@ -113,7 +113,7 @@ const Home = () => {
       </View>
       <View style={{flex:2,justifyContent:'center',alignItems:'center'}}>
       <Link href="/locationView" asChild>
-      <Pressable>{({ hovered, pressed }) => 
+      <Pressable>{() => 
       <View style={{backgroundColor:primaryColor,borderColor:primaryColor,
         width:200,height:30,alignItems:'center',justifyContent:'center',borderRadius:50,flexDirection:'row'}}>
         <Image source={LocationIcon}/>
@@ -125,7 +125,6 @@ const Home = () => {
       </Link>   
       </View>
     </View>
-    // <Redirect href="/home/locationView" />
   );
 };
 export default Home;

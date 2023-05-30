@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import MapView, { Marker } from 'react-native-maps';
-import { StyleSheet, View, TouchableOpacity,Text } from 'react-native';
+import { StyleSheet, View, TouchableOpacity,Text,Alert } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import * as Location from 'expo-location';
 import {bgColor,primaryColor} from './../color'
@@ -32,17 +32,14 @@ const LocationView = () => {
         longitudeDelta: 0.0421,
       });
     } catch (error) {
-      setErrorMsg('Error fetching location');
+      Alert.alert('Error fetching location');
     }
   };
 
   const handlePressMarker = () => {
     if (mapRegion) {
-      // Navigate to the user's current location
       const { latitude, longitude } = mapRegion;
-      // Use any navigation method of your choice (e.g., React Navigation)
-      // For demonstration purposes, simply printing the coordinates here
-      console.log('User location:', latitude, longitude);
+      Alert.alert('User location:', latitude, longitude);
     }
   };
 
