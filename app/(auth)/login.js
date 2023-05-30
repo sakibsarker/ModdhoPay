@@ -1,7 +1,9 @@
-import { Text, View, TextInput, StyleSheet, Alert } from "react-native";
+import { Text, View, TextInput, StyleSheet, Alert,Image,TouchableOpacity } from "react-native";
 import { AuthStore, appSignIn } from "../../store.js";
 import { Stack, useRouter } from "expo-router";
 import { useRef } from "react";
+import {primaryColor,bgColor,textColor,darkwhite,secondaryColor} from '../../color.js'
+import Logo from '../../assets/moddhopay.png'
 
 export default function LogIn() {
   const router = useRouter();
@@ -9,7 +11,8 @@ export default function LogIn() {
   const passwordRef = useRef("");
 
   return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+    <View style={{flex:1,justifyContent: "center", alignItems: "center",backgroundColor:bgColor }}>
+      <Image source={Logo} style={{height:40,width:250,marginBottom:50}}/>
       <View>
         <Text style={styles.label}>Email</Text>
         <TextInput
@@ -34,8 +37,7 @@ export default function LogIn() {
           style={styles.textInput}
         />
       </View>
-      <Text
-        onPress={async () => {
+      <TouchableOpacity  onPress={async () => {
           const resp = await appSignIn(emailRef.current, passwordRef.current);
           if (resp?.user) {
             router.replace("/(tabs)/home");
@@ -43,11 +45,19 @@ export default function LogIn() {
             console.log(resp.error)
             Alert.alert("Login Error", resp.error?.message)
           }
-        }}
+        }}>
+      <View style={{backgroundColor:primaryColor,
+        margin:20,borderColor:primaryColor,
+        width:350,height:40,alignItems:'center',justifyContent:'center',borderRadius:5}}>
+      <Text style={{color:secondaryColor,fontSize:15,fontWeight:'bold'}}
       >
         Login
       </Text>
+      </View>
+      </TouchableOpacity>
+      <Text style={{textAlign:'left'}}>Do you have account?</Text>
       <Text
+      style={{color:primaryColor,fontSize:15,textDecorationLine:'underline',}}
         onPress={() => {
           AuthStore.update((s) => {
             s.isLoggedIn = true;
@@ -55,7 +65,7 @@ export default function LogIn() {
           router.push("/create-account");
         }}
       >
-        Create Account
+        Sign up
       </Text>
     </View>
   );
@@ -64,15 +74,17 @@ export default function LogIn() {
 const styles = StyleSheet.create({
   label: {
     marginBottom: 4,
-    color: "#455fff",
+    color: textColor,
   },
   textInput: {
-    width: 250,
-    borderWidth: 1,
+    width: 350,
+    borderWidth: 3,
     borderRadius: 4,
-    borderColor: "#455fff",
+    borderColor: secondaryColor,
     paddingHorizontal: 8,
     paddingVertical: 4,
     marginBottom: 8,
+    backgroundColor:secondaryColor,
+    color:textColor
   },
 });

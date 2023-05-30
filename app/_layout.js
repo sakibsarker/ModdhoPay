@@ -1,6 +1,4 @@
 import { SplashScreen, Stack } from "expo-router";
-
-
 import {
   useFonts,
   EncodeSansSemiCondensed_100Thin,
@@ -13,6 +11,14 @@ import {
   EncodeSansSemiCondensed_800ExtraBold,
   EncodeSansSemiCondensed_900Black,
 } from '@expo-google-fonts/encode-sans-semi-condensed';
+import { primaryColor,textColor,bgColor,secondaryColor,darkwhite } from './../color';
+import {
+  ThemeProvider,
+  DarkTheme,
+  DefaultTheme,
+  useTheme,
+} from "@react-navigation/native";
+import { Slot } from 'expo-router';
 
 export default function Layout() {
 
@@ -24,14 +30,77 @@ export default function Layout() {
   });
 
   if (!fontsLoaded) {
-    // The native splash screen will stay visible for as long as there
-    // are `<SplashScreen />` components mounted. This component can be nested.
 
     return <SplashScreen />;
   }
 
   return (
-    <Stack screenOptions={{ headerShown: false }}  />
+    
+    <Stack screenOptions={{ headerShown: false }} >
+       <Stack.Screen name="locationView" 
+       options={{
+        headerShown: true,
+        headerTitle:'Location',
+        headerStyle: {
+          backgroundColor:primaryColor,
+        },
+        headerTintColor: bgColor,
+        }}/>
+               <Stack.Screen name="receiveMoney" 
+       options={{
+        headerShown: true,
+        headerTitle:'Receive',
+        headerStyle: {
+          backgroundColor:primaryColor,
+        },
+        headerTintColor: bgColor,
+        }}/>
+               <Stack.Screen name="pendingMoney" 
+       options={{
+        headerShown: true,
+        headerTitle:'Pending',
+        headerStyle: {
+          backgroundColor:primaryColor,
+        },
+        headerTintColor: bgColor,
+        }}/>
+               <Stack.Screen name="addMoney" 
+       options={{
+        headerShown: true,
+        headerTitle:'Add money',
+        headerStyle: {
+          backgroundColor:primaryColor,
+        },
+        headerTintColor: bgColor,
+        }}/>
+               <Stack.Screen name="cashOutMoney" 
+       options={{
+        headerShown: true,
+        headerTitle:'Cash out',
+        headerStyle: {
+          backgroundColor:primaryColor,
+        },
+        headerTintColor: bgColor,
+        }}/>
+               <Stack.Screen name="historyMoney" 
+       options={{
+        headerShown: true,
+        headerTitle:'History',
+        headerStyle: {
+          backgroundColor:primaryColor,
+        },
+        headerTintColor: bgColor,
+        }}/>
+               {/* <Stack.Screen name="sendmoney" 
+       options={{
+        headerShown: false,
+        headerTitle:'Send money',
+        headerStyle: {
+          backgroundColor:primaryColor,
+        },
+        headerTintColor: bgColor,
+        }}/> */}
+    </Stack>
 
   );
 }

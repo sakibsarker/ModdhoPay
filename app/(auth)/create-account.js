@@ -1,8 +1,8 @@
-import { Text, View, TextInput, StyleSheet,Alert } from "react-native";
+import { Text, View, TextInput, StyleSheet,Alert,TouchableOpacity } from "react-native";
 import { useRef } from "react";
 import { AuthStore, appSignUp } from "../../store.js";
 import { Stack, useRouter } from "expo-router";
-
+import {primaryColor,bgColor,textColor,darkwhite,secondaryColor} from '../../color.js'
 export default function CreateAccount() {
   const router = useRouter();
   const emailRef = useRef("");
@@ -12,9 +12,11 @@ export default function CreateAccount() {
 
   return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+      <Text style={{color:primaryColor,fontSize:20,marginBottom:20}}>Sign Up</Text>
       <Stack.Screen
         options={{ title: "Create Account", headerLeft: () => <></> }}
       />
+      
       <View>
         <Text style={styles.label}>Email</Text>
         <TextInput
@@ -60,10 +62,7 @@ export default function CreateAccount() {
           style={styles.textInput}
         />
       </View>
-
-      <Text
-        style={{ marginBottom: 8 }}
-        onPress={async () => {
+      <TouchableOpacity  onPress={async () => {
           const resp = await appSignUp(
             emailRef.current,
             passwordRef.current,
@@ -75,12 +74,18 @@ export default function CreateAccount() {
             console.log(resp.error);
             Alert.alert("Sign Up Error", resp.error?.message);
           }
-        }}
-      >
-        SAVE NEW USER
+        }}>
+      <View style={{backgroundColor:primaryColor,
+        margin:20,borderColor:primaryColor,
+        width:350,height:40,alignItems:'center',justifyContent:'center',borderRadius:5}}>
+      <Text style={{color:secondaryColor,fontSize:15,fontWeight:'bold'}}>
+        Sign Up
       </Text>
-
+      </View>
+      </TouchableOpacity>
+      <Text style={{color:textColor}}>Already have account ?</Text>
       <Text
+      style={{color:textColor,textDecorationLine:'underline',color:primaryColor,fontSize:15}}
         onPress={() => {
           AuthStore.update((s) => {
             s.isLoggedIn = false;
@@ -88,7 +93,7 @@ export default function CreateAccount() {
           router.back();
         }}
       >
-        CANCEL
+        Login
       </Text>
     </View>
   );
@@ -97,15 +102,17 @@ export default function CreateAccount() {
 const styles = StyleSheet.create({
   label: {
     marginBottom: 4,
-    color: "#455fff",
+    color: textColor,
   },
   textInput: {
-    width: 250,
-    borderWidth: 1,
+    width: 350,
+    borderWidth: 3,
     borderRadius: 4,
-    borderColor: "#455fff",
+    borderColor: secondaryColor,
     paddingHorizontal: 8,
     paddingVertical: 4,
     marginBottom: 8,
+    backgroundColor:secondaryColor,
+    color:textColor
   },
 });

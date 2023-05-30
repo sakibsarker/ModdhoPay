@@ -1,26 +1,44 @@
 import { Redirect, Stack, useRouter } from "expo-router";
-import { Button, Pressable, Text, TouchableOpacity, View,Alert } from "react-native";
+import { Button, Pressable, Text, TouchableOpacity, View,Image } from "react-native";
 import { AuthStore, appSignOut } from "../../../store";
+import { primaryColor,textColor,bgColor,secondaryColor,darkwhite } from '../../../color';
+import sakib from '../../../assets/sakib.png'
+import Logo from '../../../assets/moddhopay.png'
+import { AntDesign,Feather,Fontisto } from '@expo/vector-icons';
 
-const Tab2Index = () => {
+const Profile = () => {
   const router = useRouter();
   return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Stack.Screen options={{ headerShown: true, title: "Settings" }} />
-      {/* <Text style={{ fontFamily: "EncodeSansSemiCondensed_100Thin" }}>
-        EncodeSansSemiCondensed_100Thin
-      </Text>
-      <Text style={{ fontFamily: "EncodeSansSemiCondensed_300Light" }}>
-        EncodeSansSemiCondensed_300Light
-      </Text> */}
-      <Text style={{ fontFamily: "EncodeSansSemiCondensed_400Regular" }}>
-        {AuthStore.getRawState().user?.email}
-      </Text>
-      <Text style={{ fontFamily: "EncodeSansSemiCondensed_700Bold" }}>
+    <View style={{ flex: 1,backgroundColor:bgColor,flexDirection:'column'}}>
+      <Stack.Screen options={{ headerShown: false}} />
+      <View style={{flex:1,justifyContent:'center',alignItems:'center'}}><Image source={Logo} style={{width:200,height:32}}/></View>
+      <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
+      <Image source={sakib} style={{height:100,width:100,borderRadius:50,borderColor:primaryColor,borderWidth:5}}/>
+      <Text style={{ fontFamily: "EncodeSansSemiCondensed_700Bold",fontSize:15,color:textColor }}>
         {AuthStore.getRawState().user?.displayName}
       </Text>
-      <Button
-        onPress={async () => {
+      <Text style={{ fontFamily: "EncodeSansSemiCondensed_400Regular",color:textColor,fontSize:15 }}>
+        {AuthStore.getRawState().user?.email}
+      </Text>
+      <View style={{backgroundColor:primaryColor,
+        margin:20,borderColor:primaryColor,
+        width:150,height:40,alignItems:'center',justifyContent:'center',borderRadius:20}}>
+      <Text style={{color:secondaryColor,fontSize:15,fontWeight:'bold'}}>Edit Name</Text>
+      </View>
+      </View>
+      <View style={{flex:2,flexDirection:'column',marginLeft:30,marginTop:10}}>
+        <View>
+        <TouchableOpacity>
+      <Text style={{fontSize:16,color:textColor,margin:10}}> <Feather name="moon" size={16} color={textColor}/>  Dark Mode</Text>
+        </TouchableOpacity>
+        </View>
+        <View>
+        <TouchableOpacity>
+      <Text style={{fontSize:16,color:textColor,margin:10}}> <Fontisto name="world-o" size={16} color="black" />  Language</Text>
+        </TouchableOpacity>
+        </View>
+        <View>
+        <TouchableOpacity onPress={async () => {
           const resp = await appSignOut();
           if (!resp?.error) {
             router.replace("/(auth)/login");
@@ -28,36 +46,14 @@ const Tab2Index = () => {
             console.log(resp.error);
             Alert.alert("Logout Error", resp.error?.message);
           }
-        }}
-        title="LOGOUT"
-      />
+        }}>
+      <Text style={{fontSize:16,color:textColor,margin:10}}> <AntDesign name="logout" size={16} color={textColor} />  Log Out</Text>
+        </TouchableOpacity>
+        </View>
 
-      <Pressable
-        onPress={() => {
-          alert("pressed");
-        }}
-        style={({ pressed }) => [
-          { backgroundColor: pressed ? "#920" : "#818" },
-          {
-            borderColor: "#920",
-            borderWidth: 1,
-            borderStyle: "solid",
-            borderRadius: 8,
-            paddingHorizontal: 12,
-            paddingVertical: 6,
-          },
-        ]}
-      >
-        <Text
-          style={{
-            fontFamily: "EncodeSansSemiCondensed_700Bold",
-            color: "white",
-          }}
-        >
-          Button
-        </Text>
-      </Pressable>
+      </View>
+
     </View>
   );
 };
-export default Tab2Index;
+export default Profile;
