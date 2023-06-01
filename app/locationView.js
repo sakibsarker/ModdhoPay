@@ -16,7 +16,7 @@ const LocationView = () => {
   const getUserLocation = async () => {
     let { status } = await Location.requestForegroundPermissionsAsync();
     if (status !== 'granted') {
-      setErrorMsg('Permission to access location was denied');
+      Alert.alert('Permission to access location was denied');
       return;
     }
 
@@ -32,7 +32,7 @@ const LocationView = () => {
         longitudeDelta: 0.0421,
       });
     } catch (error) {
-      Alert.alert('Error fetching location');
+      Alert.alert('Error fetching location',error);
     }
   };
 
@@ -73,7 +73,9 @@ const styles = StyleSheet.create({
   },
   map: {
     flex: 1,
-  },
+    width:100,
+    height:100 
+   },
   markerIcon: {
     alignSelf: 'center',
     marginTop: -32,

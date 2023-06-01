@@ -111,6 +111,17 @@ const SendMoney = () => {
           style={styles.textInput}
         />
       </View>
+      <View>
+        <Text style={styles.label}>Courier Service</Text>
+        <TextInput
+        //  value={location}
+        //  onChangeText={(location) => {
+        //    setLocation(location);
+        //  }}
+          placeholder="Enter courier service"
+          style={styles.textInput}
+        />
+      </View>
       <View style={{justifyContent:'flex-end',flexDirection:'row',alignItems:'flex-end',marginLeft:'60%'}}>
       <Link href="/sendmoney/paymentProcess" asChild>
       <Pressable onPress={addMoney}>{() =>
